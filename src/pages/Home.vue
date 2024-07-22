@@ -16,7 +16,7 @@
 </script>
 
 <template>
-    <AppLayout imgUrl="src\\assets\\img\\cocktail1.png">
+    <AppLayout imgUrl="/Cocktails/src/assets/img/cocktail1.png">
         <div class="wrapper">
             <div v-if="!ingredient || !cocktails" class="info">
                 <div class="title">Choose your drink</div>

@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-    <AppLayout imgUrl="src\\assets\\img\\cocktail2.png"/>;
+    <AppLayout imgUrl="/Cocktails/src/assets/img/cocktail2.png"/>;
 </template>
 
 
