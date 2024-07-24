@@ -20,7 +20,7 @@
 </script>
 
 <template>
-    <AppLayout imgUrl="/Cocktails/src/assets/img/cocktail1.png" :backFunc="removeIngregient" :is-back-button-visible="!!ingredient">
+    <AppLayout imgUrl="https://i.postimg.cc/4dBG267b/cocktail1.jpg" :backFunc="removeIngregient" :is-back-button-visible="!!ingredient">
         <div class="wrapper">
             <div v-if="!ingredient || !cocktails" class="info">
                 <div class="title">Choose your drink</div>
