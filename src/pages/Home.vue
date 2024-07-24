@@ -13,10 +13,14 @@
     function getCocktails(params) {
         rootStore.getCocktails(rootStore.ingredient);
     };
+
+    function removeIngregient(){
+        rootStore.setIngredient(null)
+    }
 </script>
 
 <template>
-    <AppLayout imgUrl="/Cocktails/src/assets/img/cocktail1.png">
+    <AppLayout imgUrl="/Cocktails/src/assets/img/cocktail1.png" :backFunc="removeIngregient" :is-back-button-visible="!!ingredient">
         <div class="wrapper">
             <div v-if="!ingredient || !cocktails" class="info">
                 <div class="title">Choose your drink</div>
@@ -62,18 +66,6 @@
 <style lang="scss" scoped>
     @import '../assets/styles/main';
 
-
-    .wrapper{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    };
-
-    .info{
-        padding: 80px 0;
-        text-align: center;
-    };
-
     .select-wrapper{
         padding-top: 50px;
     };
@@ -98,7 +90,6 @@
     .cocktails{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         align-items: center;
         max-height: 400px;
         overflow-y: auto;

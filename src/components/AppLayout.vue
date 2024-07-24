@@ -1,10 +1,19 @@
 <script setup>
-    const props = defineProps({
-        imgUrl: {
-            type: String,
-            required: true,
-        },
-    });
+import { Back } from '@element-plus/icons-vue'
+const props = defineProps({
+    imgUrl: {
+        type: String,
+        required: true,
+    },
+    backFunc: {
+        type: Function,
+        require: true,
+    },
+    isBackButtonVisible: {
+        type: Boolean,
+        default: true,
+    }
+});
 
 </script>
 
@@ -12,53 +21,82 @@
     <div class="root">
         <div :style="`background-image: url(${imgUrl})`" class="img"></div>
         <div class="main">
-            <el-button class="btn">Get random cocktail</el-button>
-            
+            <div class="btns">
+                <el-button v-if="isBackButtonVisible" type="primary" :icon="Back" circle class="back"
+                    @click="backFunc" />
+                <el-button class="btn">Get random cocktail</el-button>
+            </div>
+
+
             <slot></slot>
-        </div> 
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    @import '../assets/styles/main';
+@import '../assets/styles/main';
 
-    .root{
-        display: flex;
-        min-height: 100vh;
-        background-color: $background;
-    };
+.root {
+    display: flex;
+    min-height: 100vh;
+    background-color: $background;
+}
 
-    .img{
-        width: 50%;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: cover;
-    };
+;
 
-    .main{
-        position: relative;
-        width: 50%;
-        padding: 32px 40px;
-        
-    };
+.img {
+    width: 50%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+}
 
-    .btn{
-        position: absolute;
-        top: 32px;
-        right: 40px;
-        background-color: $accent;
-        border-color: $accent;
-        color: $text;
-        font-family: 'Raleway', 'Arial', sans-serif;
-        font-size: 16px;
-    };
-    
-    .btn:hover,
-    .btn:active,
-    .btn:focus{
-        background-color: darken($accent, 20%);
-        border-color: darken($accent, 20%);
-    };
+;
 
+.main {
+    position: relative;
+    width: 50%;
+    padding: 32px 40px;
 
+}
+
+;
+
+.btn {
+    position: absolute;
+    top: 32px;
+    right: 40px;
+    background-color: $accent;
+    border-color: $accent;
+    color: $text;
+    font-family: 'Raleway', 'Arial', sans-serif;
+    font-size: 16px;
+}
+
+;
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background-color: darken($accent, 20%);
+    border-color: darken($accent, 20%);
+}
+
+;
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back {
+    background-color: transparent;
+    border-color: $text;
+}
+
+.back:hover,
+.back:focus {
+    border-color: $accent;
+}
 </style>

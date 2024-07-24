@@ -24,8 +24,8 @@ import { RouterLink } from 'vue-router';
 
     .root{
         width: calc((100% - 76px)/3);
-        padding-right: 38px;
-        padding-bottom: 20px;
+        margin-right: 38px;
+        margin-bottom: 20px;
     };
 
     .root:nth-child(3n+3){
@@ -43,6 +43,10 @@ import { RouterLink } from 'vue-router';
 
     .name{
         padding-top: 15px;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         letter-spacing: 0.1em;
     }
 </style>
