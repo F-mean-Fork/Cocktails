@@ -8,10 +8,10 @@
     const rootStore = useRootStore();
     rootStore.getIngredients();
 
-    const {ingredients, cocktails} = storeToRefs(rootStore);
-    const ingredient = ref(null);
+    const {ingredients, cocktails, ingredient} = storeToRefs(rootStore);
+
     function getCocktails(params) {
-        rootStore.getCocktails(ingredient.value);
+        rootStore.getCocktails(rootStore.ingredient);
     };
 </script>
 
@@ -26,6 +26,8 @@
                         v-model="ingredient" 
                         placeholder="Choose main ingredient" 
                         style="large" 
+                        filterable
+                        allow-create
                         class="select"
                         @change="getCocktails"
                     >
@@ -43,7 +45,7 @@
                 <img src="../assets/img/exmpl.png" alt="cocktails" class="img">
             </div>
             <div v-else class="info">
-                <div class="title">COCKTAILS WITH {{ ingredient }} </div>
+                <div class="title">COCKTAILS WITH {{rootStore.ingredient}} </div>
                 <div class="line"></div> 
                 <div class="cocktails">
                     <CocktailsThumb 
