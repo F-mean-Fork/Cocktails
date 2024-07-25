@@ -1,5 +1,9 @@
 <script setup>
-import { Back } from '@element-plus/icons-vue'
+import { useRoute, useRouter } from 'vue-router';
+import { Back } from '@element-plus/icons-vue';
+import { computed } from 'vue';
+import { ROUTER_PATHS } from '@/constants';
+
 const props = defineProps({
     imgUrl: {
         type: String,
@@ -7,7 +11,6 @@ const props = defineProps({
     },
     backFunc: {
         type: Function,
-        require: true,
     },
     isBackButtonVisible: {
         type: Boolean,
@@ -15,6 +18,22 @@ const props = defineProps({
     }
 });
 
+const route = useRoute();
+const router = useRouter();
+
+const routName = computed(() => route.name);
+
+function goForCocktailRandom() {
+    router.push(ROUTER_PATHS.COCKTAIL_RANDOM);
+
+    if (routName.value === ROUTER_PATHS.COCKTAIL_RANDOM) {
+        router.go()
+    }
+}
+
+function goBack() {
+    props.backFunc ? props.backFunc() : router.go(-1)
+}
 </script>
 
 <template>
@@ -23,8 +42,8 @@ const props = defineProps({
         <div class="main">
             <div class="btns">
                 <el-button v-if="isBackButtonVisible" type="primary" :icon="Back" circle class="back"
-                    @click="backFunc" />
-                <el-button class="btn">Get random cocktail</el-button>
+                    @click="goBack" />
+                <el-button class="btn" @click="goForCocktailRandom">Get random cocktail</el-button>
             </div>
 
 
@@ -90,13 +109,19 @@ const props = defineProps({
     align-items: center;
 }
 
+;
+
 .back {
     background-color: transparent;
     border-color: $text;
 }
 
+;
+
 .back:hover,
 .back:focus {
     border-color: $accent;
 }
+
+;
 </style>
